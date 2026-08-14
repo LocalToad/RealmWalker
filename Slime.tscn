@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bhyctoxdkruw4"]
+
+[ext_resource type="Script" uid="uid://x1ii2klft78c" path="res://slime.gd" id="1_cwriv"]
+[ext_resource type="Texture2D" uid="uid://6qexpgpu26gk" path="res://Game Art/slime.png" id="1_d12es"]
+
+[node name="Slime" type="Node2D" unique_id=337640532]
+script = ExtResource("1_cwriv")
+
+[node name="n" type="RayCast2D" parent="." unique_id=1329690013]
+position = Vector2(0, -8)
+target_position = Vector2(0, -8)
+hit_from_inside = true
+
+[node name="s" type="RayCast2D" parent="." unique_id=977931815]
+position = Vector2(0, 8)
+target_position = Vector2(0, 8)
+hit_from_inside = true
+
+[node name="w" type="RayCast2D" parent="." unique_id=256381967]
+position = Vector2(-8, 0)
+target_position = Vector2(-8, 0)
+hit_from_inside = true
+
+[node name="e" type="RayCast2D" parent="." unique_id=719779499]
+position = Vector2(8, 0)
+target_position = Vector2(8, 0)
+hit_from_inside = true
+
+[node name="se" type="RayCast2D" parent="." unique_id=738655944]
+position = Vector2(9, 9)
+target_position = Vector2(12, 12)
+hit_from_inside = true
+
+[node name="sw" type="RayCast2D" parent="." unique_id=856604582]
+position = Vector2(-9, 9)
+target_position = Vector2(-12, 12)
+hit_from_inside = true
+
+[node name="ne" type="RayCast2D" parent="." unique_id=39660132]
+position = Vector2(9, -9)
+target_position = Vector2(12, -12)
+hit_from_inside = true
+
+[node name="nw" type="RayCast2D" parent="." unique_id=2076542909]
+position = Vector2(-9, -9)
+target_position = Vector2(-12, -12)
+hit_from_inside = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1588884848]
+texture_filter = 1
+texture = ExtResource("1_d12es")
