@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhyctoxdkruw4"]
 
-[ext_resource type="Script" uid="uid://x1ii2klft78c" path="res://slime.gd" id="1_cwriv"]
+[ext_resource type="Script" uid="uid://x1ii2klft78c" path="res://Scripts/slime.gd" id="1_cwriv"]
 [ext_resource type="Texture2D" uid="uid://6qexpgpu26gk" path="res://Game Art/slime.png" id="1_d12es"]
 
 [node name="Slime" type="Node2D" unique_id=337640532]

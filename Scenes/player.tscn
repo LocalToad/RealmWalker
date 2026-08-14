@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Texture2D" uid="uid://dursc5dkhau50" path="res://Game Art/hannah.png" id="1_b26j0"]
-[ext_resource type="Script" uid="uid://bxugqnugtnuf1" path="res://player.gd" id="1_n7ghd"]
+[ext_resource type="Script" uid="uid://bxugqnugtnuf1" path="res://Scripts/player.gd" id="1_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://e5n12u0vp4jb" path="res://Game Art/SouthEastArrow.png" id="2_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://bk8d3quod0jg5" path="res://Game Art/SouthWestArrow.png" id="3_nvl01"]
 [ext_resource type="Texture2D" uid="uid://b5eqww0b08v5e" path="res://Game Art/NorthArrow.png" id="4_ivps1"]

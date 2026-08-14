@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bo5b6i6o5novi"]
 
-[ext_resource type="Script" uid="uid://bqugqgf7ttee3" path="res://tut.gd" id="1_fdw5e"]
-[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_5g8ol"]
-[ext_resource type="PackedScene" uid="uid://bhyctoxdkruw4" path="res://Slime.tscn" id="3_e6jra"]
+[ext_resource type="Script" uid="uid://bqugqgf7ttee3" path="res://Scripts/tut.gd" id="1_fdw5e"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://Scenes/player.tscn" id="2_5g8ol"]
+[ext_resource type="PackedScene" uid="uid://bhyctoxdkruw4" path="res://Scenes/Slime.tscn" id="3_e6jra"]
 [ext_resource type="Texture2D" uid="uid://d15qipl7va8ql" path="res://Game Art/sheetideauntitled.png" id="5_eg3mw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj7yv"]
