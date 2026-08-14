@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://yicge48108e0"]
+
+[ext_resource type="Script" uid="uid://bqugqgf7ttee3" path="res://Scripts/tut.gd" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://Scenes/player.tscn" id="2_i6g32"]
+[ext_resource type="PackedScene" uid="uid://bhyctoxdkruw4" path="res://Scenes/Slime.tscn" id="3_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bjnrsy8xs60eh" path="res://Scenes/starting_well.tscn" id="4_v158k"]
+
+[node name="Game" type="Node2D" unique_id=1809344470]
+script = ExtResource("1_wowpa")
+player = ExtResource("2_i6g32")
+slime = ExtResource("3_1l0tm")
+starting_well = ExtResource("4_v158k")
