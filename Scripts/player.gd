@@ -2,9 +2,6 @@ extends Node2D
 
 #PARAMS
 
-#This is the Constant Tile Size that we will be using for the game
-const tile_size: Vector2 = Vector2(16,16)
-
 #Variables
 
 var sprite_node_pos_tween: Tween
@@ -20,6 +17,10 @@ var cur_pos: Vector2
 var face: int = 0
 #This int will be the amount of turns it takes the player to enact their turn
 var speed: int = 20
+#This is the ticket that the player holds to check against to see if it can move
+var wait_turn: int  = 0
+#This is just a pointer to the global variable so that we can use it here
+var r: bool = Global.Player_ready
 
 #This is called as soon as the player is spawned into the game
 func _ready() -> void:
@@ -31,66 +32,74 @@ func _ready() -> void:
 
 #This is called any time a key is inputed
 func _physics_process(_delta: float) -> void:
-	#checks if nw is pressed
-	if Input.is_action_pressed("nw"):
-		#sets the face var to a number so we can see where we are pointing
-		face = 1
-		#this turns off any currently shown arrows
-		_reset()
-		#this shows the NorthWest Arrow
-		$NorthWestArrow.visible = true
-	#checks if n is pressed
-	elif Input.is_action_pressed("n"):
-		face = 2
-		_reset()
-		$NorthArrow.visible = true
-	#checks if ne is pressed
-	elif Input.is_action_pressed("ne"):
-		face = 3
-		_reset()
-		$NorthEastArrow.visible = true
-	#checks if e is pressed
-	elif Input.is_action_pressed("e"):
-		face = 4
-		_reset()
-		$EastArrow.visible = true
-	#checks if se is pressed
-	elif Input.is_action_pressed("se"):
-		face = 5
-		_reset()
-		$SouthEastArrow.visible = true
-	#checks if s is pressed
-	elif Input.is_action_pressed("s"):
-		face = 6
-		_reset()
-		$SouthArrow.visible = true
-	#checks if sw is pressed
-	elif Input.is_action_pressed("sw"):
-		face = 7
-		_reset()
-		$SouthWestArrow.visible = true
-	#checks if w is pressed
-	elif Input.is_action_pressed("w"):
-		face = 8
-		_reset()
-		$WestArrow.visible = true
-	
-	#Checks if the End Turn key has been press 
-	#and that the face var is set to a direction
-	if Input.is_action_just_pressed("ui_accept") and face != 0:
-		#check if we are colliding with anything and set our goal pos if not
-		_find_dir()
-		#set global position to the goal position generated in _find_dir
-		global_position = goal_pos
-		#updates our cur_pos with the goal_pos
-		cur_pos = goal_pos
+	if !r:
+		#checks if nw is pressed
+		if Input.is_action_pressed("nw"):
+			#sets the face var to a number so we can see where we are pointing
+			face = 1
+			#this turns off any currently shown arrows
+			_reset()
+			#this shows the NorthWest Arrow
+			$NorthWestArrow.visible = true
+		#checks if n is pressed
+		elif Input.is_action_pressed("n"):
+			face = 2
+			_reset()
+			$NorthArrow.visible = true
+		#checks if ne is pressed
+		elif Input.is_action_pressed("ne"):
+			face = 3
+			_reset()
+			$NorthEastArrow.visible = true
+		#checks if e is pressed
+		elif Input.is_action_pressed("e"):
+			face = 4
+			_reset()
+			$EastArrow.visible = true
+		#checks if se is pressed
+		elif Input.is_action_pressed("se"):
+			face = 5
+			_reset()
+			$SouthEastArrow.visible = true
+		#checks if s is pressed
+		elif Input.is_action_pressed("s"):
+			face = 6
+			_reset()
+			$SouthArrow.visible = true
+		#checks if sw is pressed
+		elif Input.is_action_pressed("sw"):
+			face = 7
+			_reset()
+			$SouthWestArrow.visible = true
+		#checks if w is pressed
+		elif Input.is_action_pressed("w"):
+			face = 8
+			_reset()
+			$WestArrow.visible = true
 		
+		#Checks if the End Turn key has been press 
+		#and that the face var is set to a direction
+		if Input.is_action_just_pressed("ui_accept") and face != 0:
+			#check if we are colliding with anything and set our goal pos if not
+			_find_dir()
+			#lets the game know that the player is ready for turns to pass
+			r = true
+	elif r:
+		if wait_turn == Global.Turn:
+			#lets the game know that it is the players to and to wait for an input
+			r = false
+			#set global position to the goal position generated in _find_dir
+			global_position = goal_pos
+			#updates our cur_pos with the goal_pos
+			cur_pos = goal_pos
+			
+			
 #This updates the goal_pos
 #This Requires 1 input:
 #	dir = Vector2 = multiplyer for direction
 func _move(dir: Vector2):
 	#updates the goal_pos
-	goal_pos = (dir * tile_size) + cur_pos
+	goal_pos = (dir * Global.Tile_size) + cur_pos
 	
 #This function turns off all visible arrows
 func _reset():

@@ -27,3 +27,15 @@ func _ready() -> void:
 	_spawn(player, Vector2(24,24))
 	#Spawns the Slime outside in the Abandon Hut
 	_spawn(slime, Vector2(136,136))
+
+#This function is constatly running and it will tick the turns forward if the player is ready
+func _turn(_delta):
+	#checks for player to be ready
+	if Global.Player_ready:
+		#tick turn 1 forward
+		Global.Turn += 1
+		#sets a half second timer and waits to progress another turn
+		await get_tree().create_timer(0.5).timeout
+	if !Global.Player_ready:
+		#if the player isnt ready then wait
+		pass
