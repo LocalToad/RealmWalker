@@ -29,6 +29,7 @@ func _ready() -> void:
 	#set the cur_pos variable to the global postion so we can edit it without
 	#moving the sprite
 	cur_pos = global_position
+	vision._look(cur_pos)
 
 #This is called any time a key is inputed
 func _physics_process(_delta: float) -> void:
@@ -92,6 +93,7 @@ func _physics_process(_delta: float) -> void:
 			global_position = goal_pos
 			#updates our cur_pos with the goal_pos
 			cur_pos = goal_pos
+			vision._look(cur_pos)
 			
 			
 #This updates the goal_pos
