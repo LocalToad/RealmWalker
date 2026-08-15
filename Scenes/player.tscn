@@ -20,6 +20,7 @@ target_position = Vector2(0, -8)
 hit_from_inside = true
 
 [node name="s" type="RayCast2D" parent="." unique_id=1789278388]
+z_index = 1
 position = Vector2(0, 8)
 target_position = Vector2(0, 8)
 hit_from_inside = true

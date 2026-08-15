@@ -15,6 +15,11 @@ run/main_scene="uid://yicge48108e0"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://Game Art/icon.svg"
 
+[autoload]
+
+vision="*uid://bqutlfigwn1p3"
+lib="*uid://ciq21gq8ho4re"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -80,3 +85,4 @@ nw={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.47788018, 0.47788012, 0.47788012, 1)

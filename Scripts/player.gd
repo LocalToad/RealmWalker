@@ -11,6 +11,7 @@ var speed: int = 20
 func _ready() -> void:
 	await get_tree().process_frame
 	cur_pos = global_position
+	vision._look(cur_pos)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_home"):
@@ -50,6 +51,8 @@ func _physics_process(_delta: float) -> void:
 		_find_dir()
 		global_position = goal_pos
 		cur_pos = goal_pos
+		#After every movement, look (in vision.gd)
+		vision._look(cur_pos)
 		
 func _move(dir: Vector2):
 	goal_pos = (dir * tile_size) + cur_pos
