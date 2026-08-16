@@ -29,7 +29,7 @@ func _ready() -> void:
 	#set the cur_pos variable to the global postion so we can edit it without
 	#moving the sprite
 	cur_pos = global_position
-	vision._look(cur_pos)
+	vision._look(global_position)
 
 #This is called any time a key is inputed
 func _physics_process(_delta: float) -> void:
@@ -142,3 +142,4 @@ func _find_dir():
 		_move(Vector2(-1,1))
 	elif face == 8 and !$w.is_colliding():
 		_move(Vector2(-1,0))
+	
