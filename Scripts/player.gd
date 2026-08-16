@@ -1,21 +1,12 @@
 extends Node2D
 
-<<<<<<< HEAD
 #PARAMS
 
 #Variables
 
-=======
-const tile_size: Vector2 = Vector2(16,16)
->>>>>>> 0f61c1a (fixed vision to include all walls but it doesnt check for ground corner tiles)
 var sprite_node_pos_tween: Tween
 var goal_pos: Vector2
 var cur_pos: Vector2
-<<<<<<< HEAD
-=======
-var face: int = 0
-var speed: int = 20
->>>>>>> 0f61c1a (fixed vision to include all walls but it doesnt check for ground corner tiles)
 
 #Pre-Set Variables
 
