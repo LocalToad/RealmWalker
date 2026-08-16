@@ -1,6 +1,5 @@
 extends Node2D
 
-const FOG_MAP = preload("res://Scenes/fog_map.tscn")
 const tile_size: Vector2 = Vector2(16,16)
 var sprite_node_pos_tween: Tween
 var goal_pos: Vector2
@@ -8,7 +7,6 @@ var r: bool = false
 var cur_pos: Vector2
 var face: int = 0
 var speed: int = 20
-var vision_map_loaded: bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
