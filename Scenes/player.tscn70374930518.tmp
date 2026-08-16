@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Texture2D" uid="uid://dursc5dkhau50" path="res://Game Art/hannah.png" id="1_b26j0"]
+[ext_resource type="Script" uid="uid://bxugqnugtnuf1" path="res://Scripts/player.gd" id="1_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://e5n12u0vp4jb" path="res://Game Art/SouthEastArrow.png" id="2_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://bk8d3quod0jg5" path="res://Game Art/SouthWestArrow.png" id="3_nvl01"]
+[ext_resource type="Texture2D" uid="uid://b5eqww0b08v5e" path="res://Game Art/NorthArrow.png" id="4_ivps1"]
+[ext_resource type="Texture2D" uid="uid://cs2qwlf3l5q1t" path="res://Game Art/EastArrow.png" id="5_urp6f"]
+[ext_resource type="Texture2D" uid="uid://sett2qayqmkx" path="res://Game Art/SouthArrow.png" id="6_bwjto"]
+[ext_resource type="Texture2D" uid="uid://cnde7dm400wvj" path="res://Game Art/WestArrow.png" id="7_606se"]
+[ext_resource type="Texture2D" uid="uid://dd2vanhsjldl3" path="res://Game Art/NorthWestArrow.png" id="8_u1c27"]
+[ext_resource type="Texture2D" uid="uid://wbm3b0jsy4ef" path="res://Game Art/NorthEastArrow.png" id="9_op7ga"]
+
+[node name="Player" type="Node2D" unique_id=667177153]
+script = ExtResource("1_n7ghd")
+
+[node name="n" type="RayCast2D" parent="." unique_id=649251105]
+position = Vector2(0, -8)
+target_position = Vector2(0, -8)
+hit_from_inside = true
+
+[node name="s" type="RayCast2D" parent="." unique_id=1789278388]
+z_index = 1
+position = Vector2(0, 8)
+target_position = Vector2(0, 8)
+hit_from_inside = true
+
+[node name="w" type="RayCast2D" parent="." unique_id=328876046]
+position = Vector2(-8, 0)
+target_position = Vector2(-8, 0)
+hit_from_inside = true
+
+[node name="e" type="RayCast2D" parent="." unique_id=1950546185]
+position = Vector2(8, 0)
+target_position = Vector2(8, 0)
+hit_from_inside = true
+
+[node name="se" type="RayCast2D" parent="." unique_id=556023285]
+position = Vector2(9, 9)
+target_position = Vector2(12, 12)
+hit_from_inside = true
+
+[node name="sw" type="RayCast2D" parent="." unique_id=1580171679]
+position = Vector2(-9, 9)
+target_position = Vector2(-12, 12)
+hit_from_inside = true
+
+[node name="ne" type="RayCast2D" parent="." unique_id=1780476191]
+position = Vector2(9, -9)
+target_position = Vector2(12, -12)
+hit_from_inside = true
+
+[node name="nw" type="RayCast2D" parent="." unique_id=311897266]
+position = Vector2(-9, -9)
+target_position = Vector2(-12, -12)
+hit_from_inside = true
+
+[node name="Hannah" type="Sprite2D" parent="." unique_id=625206495]
+texture_filter = 1
+texture = ExtResource("1_b26j0")
+
+[node name="SouthEastArrow" type="Sprite2D" parent="." unique_id=73701507]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(8, 8)
+texture = ExtResource("2_n7ghd")
+
+[node name="SouthWestArrow" type="Sprite2D" parent="." unique_id=131593107]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(-8, 8)
+texture = ExtResource("3_nvl01")
+
+[node name="NorthArrow" type="Sprite2D" parent="." unique_id=1997365354]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(0, -8)
+texture = ExtResource("4_ivps1")
+
+[node name="EastArrow" type="Sprite2D" parent="." unique_id=2039075790]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(8, 0)
+texture = ExtResource("5_urp6f")
+
+[node name="SouthArrow" type="Sprite2D" parent="." unique_id=1103836256]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(0, 8)
+texture = ExtResource("6_bwjto")
+
+[node name="WestArrow" type="Sprite2D" parent="." unique_id=2004245923]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(-8, 0)
+texture = ExtResource("7_606se")
+
+[node name="NorthWestArrow" type="Sprite2D" parent="." unique_id=675798927]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(-8, -8)
+texture = ExtResource("8_u1c27")
+
+[node name="NorthEastArrow" type="Sprite2D" parent="." unique_id=1331972003]
+visible = false
+z_index = 2
+texture_filter = 1
+position = Vector2(8, -8)
+texture = ExtResource("9_op7ga")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=220061376]
+position = Vector2(-2, 0)
+zoom = Vector2(4, 4)

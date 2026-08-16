@@ -1,5 +1,6 @@
 extends Node2D
 
+const FOG_MAP = preload("res://Scenes/fog_map.tscn")
 const tile_size: Vector2 = Vector2(16,16)
 var sprite_node_pos_tween: Tween
 var goal_pos: Vector2
@@ -7,11 +8,12 @@ var r: bool = false
 var cur_pos: Vector2
 var face: int = 0
 var speed: int = 20
+var vision_map_loaded: bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
 	cur_pos = global_position
-	vision._look(cur_pos)
+	vision._look(global_position)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_home"):
@@ -52,7 +54,7 @@ func _physics_process(_delta: float) -> void:
 		global_position = goal_pos
 		cur_pos = goal_pos
 		#After every movement, look (in vision.gd)
-		vision._look(cur_pos)
+		vision._look(global_position)
 		
 func _move(dir: Vector2):
 	goal_pos = (dir * tile_size) + cur_pos
@@ -92,3 +94,4 @@ func _find_dir():
 		_move(Vector2(-1,1))
 	elif face == 8 and !$w.is_colliding():
 		_move(Vector2(-1,0))
+	
