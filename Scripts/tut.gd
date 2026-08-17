@@ -28,7 +28,6 @@ func _ready() -> void:
 	_spawn(player, Vector2(24,24))
 	#Spawns the Slime outside in the Abandon Hut
 	_spawn(slime, Vector2(136,136))
-	_spawn(lady, Vector2(24,152))
 
 #This function is constatly running and it will tick the turns forward if the player is ready
 func _turn(_delta):

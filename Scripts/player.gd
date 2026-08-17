@@ -21,6 +21,8 @@ var speed: int = 20
 var wait_turn: int  = 0
 #This is just a pointer to the global variable so that we can use it here
 var r: bool = Global.Player_ready
+var use_mode: bool = false
+var dir: Vector2
 
 #This is called as soon as the player is spawned into the game
 func _ready() -> void:
@@ -33,65 +35,134 @@ func _ready() -> void:
 #This is called any time a key is inputed
 func _physics_process(_delta: float) -> void:
 	if !r:
-		#checks if nw is pressed
-		if Input.is_action_pressed("nw"):
-			#sets the face var to a number so we can see where we are pointing
-			face = 1
-			#this turns off any currently shown arrows
-			_reset()
-			#this shows the NorthWest Arrow
-			$NorthWestArrow.visible = true
-		#checks if n is pressed
-		elif Input.is_action_pressed("n"):
-			face = 2
-			_reset()
-			$NorthArrow.visible = true
-		#checks if ne is pressed
-		elif Input.is_action_pressed("ne"):
-			face = 3
-			_reset()
-			$NorthEastArrow.visible = true
-		#checks if e is pressed
-		elif Input.is_action_pressed("e"):
-			face = 4
-			_reset()
-			$EastArrow.visible = true
-		#checks if se is pressed
-		elif Input.is_action_pressed("se"):
-			face = 5
-			_reset()
-			$SouthEastArrow.visible = true
-		#checks if s is pressed
-		elif Input.is_action_pressed("s"):
-			face = 6
-			_reset()
-			$SouthArrow.visible = true
-		#checks if sw is pressed
-		elif Input.is_action_pressed("sw"):
-			face = 7
-			_reset()
-			$SouthWestArrow.visible = true
-		#checks if w is pressed
-		elif Input.is_action_pressed("w"):
-			face = 8
-			_reset()
-			$WestArrow.visible = true
+		if Input.is_action_pressed('use'):
+			if use_mode:
+				use_mode = false
+			else:
+				use_mode = true
+		#This is going to be for people Who dont have SHIFT pressed
+		if !Input.is_action_pressed("alt_move"):
+			#checks if nw is pressed
+			if Input.is_action_pressed("nw"):
+				#sets the face var to a number so we can see where we are pointing
+				face = 1
+				#this turns off any currently shown arrows
+				_reset()
+				#this shows the NorthWest Arrow
+				$NorthWestArrow.visible = true
+			#checks if n is pressed
+			elif Input.is_action_pressed("n"):
+				face = 2
+				_reset()
+				$NorthArrow.visible = true
+			#checks if ne is pressed
+			elif Input.is_action_pressed("ne"):
+				face = 3
+				_reset()
+				$NorthEastArrow.visible = true
+			#checks if e is pressed
+			elif Input.is_action_pressed("e"):
+				face = 4
+				_reset()
+				$EastArrow.visible = true
+			#checks if se is pressed
+			elif Input.is_action_pressed("se"):
+				face = 5
+				_reset()
+				$SouthEastArrow.visible = true
+			#checks if s is pressed
+			elif Input.is_action_pressed("s"):
+				face = 6
+				_reset()
+				$SouthArrow.visible = true
+			#checks if sw is pressed
+			elif Input.is_action_pressed("sw"):
+				face = 7
+				_reset()
+				$SouthWestArrow.visible = true
+			#checks if w is pressed
+			elif Input.is_action_pressed("w"):
+				face = 8
+				_reset()
+				$WestArrow.visible = true
+			
+		#IF the player presses shift they will calculate their desired direction
+		#by waiting for a vertical and a horizontal direction to be pressed 
+		#while shift is pressed
+		
+		if Input.is_action_pressed("alt_move"):
+			if Input.is_action_just_pressed("n"):
+				if face == 8 || face == 7:
+					face = 1
+					_reset()
+					$NorthWestArrow.visible = true
+				elif face == 4 || face == 5:
+					face = 3
+					_reset()
+					$NorthEastArrow.visible = true
+				else:
+					face = 2
+					_reset()
+					$NorthArrow.visible = true
+			if Input.is_action_just_pressed("s"):
+				if face == 8 || face == 1:
+					face = 7
+					_reset()
+					$SouthWestArrow.visible = true
+				elif face == 4 || face == 3:
+					face = 5
+					_reset()
+					$SouthEastArrow.visible = true
+				else:
+					face = 6
+					_reset()
+					$SouthArrow.visible = true
+			if Input.is_action_just_pressed("e"):
+				if face == 1 || face == 2:
+					face = 3
+					_reset()
+					$NorthEastArrow.visible = true
+				elif face == 7 || face == 6:
+					face = 5
+					_reset()
+					$SouthEastArrow.visible = true
+				else:
+					face = 4
+					_reset()
+					$EastArrow.visible = true
+			if Input.is_action_just_pressed("w"):
+				if face == 2 || face == 3:
+					face = 1
+					_reset()
+					$NorthWestArrow.visible = true
+				elif face == 6 || face == 5:
+					face = 7
+					_reset()
+					$SouthWestArrow.visible = true
+				else:
+					face = 8
+					_reset()
+					$WestArrow.visible = true
+					
+			
 		
 		#Checks if the End Turn key has been press 
 		#and that the face var is set to a direction
-		if Input.is_action_just_pressed("ui_accept") and face != 0:
+		if Input.is_action_just_pressed("end_turn") and face != 0:
 			#check if we are colliding with anything and set our goal pos if not
-			_find_dir()
+			dir = _find_dir()
 			#lets the game know that the player is ready for turns to pass
 			r = true
 	elif r:
 		if wait_turn == Global.Turn:
 			#lets the game know that it is the players to and to wait for an input
 			r = false
-			#set global position to the goal position generated in _find_dir
-			global_position = goal_pos
-			#updates our cur_pos with the goal_pos
-			cur_pos = goal_pos
+			if !use_mode:
+				_move(dir)
+				#set global position to the goal position generated in _find_dir
+				global_position = goal_pos
+				#updates our cur_pos with the goal_pos
+				cur_pos = goal_pos
 			
 			
 #This updates the goal_pos
@@ -125,18 +196,18 @@ func _find_dir():
 	#check face for direction, then check if colliding
 	if face == 1 and !$nw.is_colliding():
 		#run the _move math function with the needed direction data to update goal_pos
-		_move(Vector2(-1,-1))
+		return Vector2(-1,-1)
 	elif face == 2 and !$n.is_colliding():
-		_move(Vector2(0,-1))
+		return Vector2(0,-1)
 	elif face ==3 and !$ne.is_colliding():
-		_move(Vector2(1,-1))
+		return Vector2(1,-1)
 	elif face == 4 and !$e.is_colliding():
-		_move(Vector2(1,0))
+		return Vector2(1,0)
 	elif face == 5 and !$se.is_colliding():
-		_move(Vector2(1,1))
+		return Vector2(1,1)
 	elif face == 6 and !$s.is_colliding():
-		_move(Vector2(0,1))
+		return Vector2(0,1)
 	elif face == 7 and !$sw.is_colliding():
-		_move(Vector2(-1,1))
+		return Vector2(-1,1)
 	elif face == 8 and !$w.is_colliding():
-		_move(Vector2(-1,0))
+		return Vector2(-1,0)
