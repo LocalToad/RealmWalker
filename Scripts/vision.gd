@@ -42,7 +42,6 @@ var adjacent_fog_6
 var adjacent_fog_7
 var adjacent_fog_8
 
-
 func _look(looker_pos_pixel_center: Vector2):
 	
 	#map_node = lib.startingWell.get_node("TileMap")
@@ -64,7 +63,7 @@ func _look(looker_pos_pixel_center: Vector2):
 			map_tile_map_layer = null
 			test_point = null
 			tile_collision_polygons = null
-			
+
 			if current_fog_node.has_node("TileMapLayer"):
 				_fog_tile_layer = current_fog_node.get_node("TileMapLayer")
 				
