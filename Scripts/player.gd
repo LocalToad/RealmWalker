@@ -77,13 +77,6 @@ func _physics_process(_delta: float) -> void:
 			face = 8
 			_reset()
 			$WestArrow.visible = true
-	
-	if Input.is_action_just_pressed("ui_accept") and face != 0:
-		_find_dir()
-		global_position = goal_pos
-		cur_pos = goal_pos
-		#After every movement, look (in vision.gd)
-		Vision._look(global_position)
 		
 		#Checks if the End Turn key has been press 
 		#and that the face var is set to a direction
