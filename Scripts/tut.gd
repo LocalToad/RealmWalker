@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var player: PackedScene
-@export var slime: PackedScene
-@export var starting_well: PackedScene
+const starting_well = preload("res://Scenes/starting_well.tscn")
+const slime = preload("res://Scenes/Slime.tscn")
+const player = preload("res://Scenes/player.tscn")
 
 #This is a basic spawner for scenes
 #This requires 2 Inputs:

@@ -18,6 +18,8 @@ config/icon="res://Game Art/icon.svg"
 [autoload]
 
 Global="*uid://c4euqaqklpp1o"
+lib="*uid://ciq21gq8ho4re"
+Vision="*uid://bqutlfigwn1p3"
 
 [display]
 
@@ -84,3 +86,4 @@ nw={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.47788018, 0.47788012, 0.47788012, 1)

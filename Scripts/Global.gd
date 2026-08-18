@@ -10,3 +10,5 @@ var Turn: int = 0
 #This is tells us if the player is ready for the game to progress 
 #or if we need to wait for more inputs from the player
 var Player_ready: bool = false
+
+var map: Node2D
